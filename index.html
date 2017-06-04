@@ -2,29 +2,29 @@
 <html>
 <head>
 	<title></title>
+	<style type="text/css">
+		.is-loading{background-color: blue; color: white;}
+	</style>
 </head>
 <body>
 	<script src="https://unpkg.com/vue"></script>
 	<div id="app">
-		<ol>
-			<li v-for="name in names">{{name}}</li>
-		</ol>
-
-		<input type="text" id="input" v-model="newName">
-		<button id="butt" @click="addName">Add Name</button>
+		<button :disabled="dis" @click="toggleClass">{{message}}</button>
+		<button @click="toggleClass">enable my friend</button>
 	</div>
 
 	<script>
 		new Vue({
 			el: '#app',
 			data:{
-				newName: '',
-				names: ["me", "you", "them"]
+			  title: "Now being set over JS",
+			  message: "I'm disabled!",
+			  dis: true,
 			},
 			methods:{
-				addName: function(){
-					this.names.push(this.newName);
-					this.newName = '';
+				toggleClass(){
+					this.dis =false;
+					this.message = "Yay! I'm enabled"
 				}
 			}
 		})

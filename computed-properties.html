@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+	<div id="app">
+		<h1>All Tasks</h1>
+		<ul>
+			<li v-for="task in tasks">{{task.description}}</li>
+		</ul>
+
+		<h2>Completed Tasks</h2>
+		<template v-for="task in completedTasks">
+			<li>
+			      {{task.description}}
+			      <button @click="moveToIncomplete(key)">Not complete yet</button>
+			</li>
+		</template>
+
+		<h2> Incomplete Tasks
+		</h2>
+		<template v-for="task in incompleteTasks">
+				<li>
+					{{task.description}}
+					<button @click="moveToCompleted(key)">Completed!</button>
+				</li>
+			</template>
+		
+	</div>
+
+	<script>
+		new Vue({
+			el: '#app',
+			data:{
+				tasks:[
+					{description: 'New one', completed: true},
+					{description: 'Old one', completed: false},
+					{description: 'Soft one', completed: false},
+					{description: 'Strong one', completed: true},
+					{description: 'Strange one', completed: false}
+				]
+			},
+			computed:{
+				completedTasks(){
+					return this.tasks.filter(task => task.completed) // returns objects in task that have their completed attribute set to true
+				},
+
+				incompleteTasks(){
+					return this.tasks.filter(task => ! task.completed) // returns objects in task that have their completed attribute set to false
+				}
+			},
+			methods:{
+				moveToCompleted(index){
+					this.tasks[index].completed = true;
+				},
+				moveToIncomplete(index){
+					this.tasks[index].completed = false;
+				}
+			}
+		})
+	</script>
+
+</body>
+</html>
