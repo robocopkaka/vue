@@ -12,7 +12,7 @@
 		</ul>
 
 		<h2>Completed Tasks</h2>
-		<template v-for="task in completedTasks">
+		<template v-for="(task, key) in completedTasks">
 			<li>
 			      {{task.description}}
 			      <button @click="moveToIncomplete(key)">Not complete yet</button>
@@ -21,7 +21,7 @@
 
 		<h2> Incomplete Tasks
 		</h2>
-		<template v-for="task in incompleteTasks">
+		<template v-for="(task, key) in incompleteTasks">
 				<li>
 					{{task.description}}
 					<button @click="moveToCompleted(key)">Completed!</button>
@@ -44,19 +44,19 @@
 			},
 			computed:{
 				completedTasks(){
-					return this.tasks.filter(task => task.completed) // returns objects in task that have their completed attribute set to true
+					return this.tasks.filter(task => task.completed) // returns objects in task that have their completed attribute set to true. results are stored in an array called completedTasks and can be accessed using this.completedTasks
 				},
 
 				incompleteTasks(){
-					return this.tasks.filter(task => ! task.completed) // returns objects in task that have their completed attribute set to false
+					return this.tasks.filter(task => ! task.completed) // returns objects in task that have their completed attribute set to false. results are stored in an array called incomplete tesks and can be accessed using this.incompleteTasks
 				}
 			},
 			methods:{
-				moveToCompleted(index){
-					this.tasks[index].completed = true;
+				moveToCompleted(task){
+					this.incompleteTasks[task].completed = true;
 				},
-				moveToIncomplete(index){
-					this.tasks[index].completed = false;
+				moveToIncomplete(task){
+					this.completedTasks[task].completed = false;
 				}
 			}
 		})
