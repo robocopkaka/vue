@@ -20,6 +20,33 @@ Vue.component('task-list',{
 	}
 })
 
+Vue.component('message-component', {
+	props: ['title', 'body'],
+	data(){
+		return{
+			isVisible:true  // this makes it the each message component shows till the user decides to hide it
+		};
+	},
+	template: `
+		<article class="message" v-show="isVisible">
+			<div class="message-header">
+				{{title}}
+				<button type = "button" style="float:right;" @click="hideModal"> X </button>
+			</div>
+
+			<div class="message-body">
+				{{body}}
+		    </div>
+		</article>
+
+	`,
+	methods:{
+		hideModal(){
+			this.isVisible = false;
+		}
+	}
+})
+
 new Vue({
 	el: '#app'
 });
