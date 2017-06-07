@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.2/css/bulma.css">
+	<style type="text/css">
+		body{
+			padding-top: 50px;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<coupon-component v-on:applied="onCouponApplied"></coupon-component>
+
+		<h1 v-if="couponApplied">You used a coupon</h1>
+	</div>
+
+
+	<script src="https://unpkg.com/vue"></script>
+	<script src="components/coupon-component.js"></script>
+</body>
+</html>
