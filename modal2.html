@@ -10,14 +10,18 @@
 	</style>
 </head>
 <body>
-	<div id="app">
-		<coupon-component v-on:applied="onCouponApplied"></coupon-component>
+	<div id="app" class="container">
+		<modal>
+			<template slot="header">Kachi</template>
 
-	<!-- 	<h1 v-if="couponApplied">You used a coupon</h1> -->
+			<div slot="footer">
+				<a class="button is-success">Save changes</a>
+		        <a class="button">Cancel</a>
+			</div>
+		</modal>
 	</div>
 
-
 	<script src="https://unpkg.com/vue"></script>
-	<script src="components/coupon-component.js"></script>
+	<script src="components/modal2.js"></script>
 </body>
 </html>
